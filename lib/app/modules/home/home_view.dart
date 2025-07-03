@@ -11,25 +11,29 @@ class HomeView extends GetView<HomeController> {
       appBar: AppBar(
         title: Text('app_title'.tr),
         actions: [
-          Theme(
-            data: Theme.of(context).copyWith(canvasColor: Colors.black87),
-            child: DropdownButton<Locale>(
-              value: Get.locale,
-              underline: const SizedBox(),
-              icon: const Icon(Icons.language, color: Colors.white),
-              onChanged: (Locale? locale) {
-                if (locale != null) Get.updateLocale(locale);
-              },
-              items: const [
-                DropdownMenuItem(
-                  value: Locale('en', 'US'),
-                  child: Text('English'),
-                ),
-                DropdownMenuItem(
-                  value: Locale('hi', 'IN'),
-                  child: Text('हिंदी'),
-                ),
-              ],
+          // 🌐 Language Dropdown with padding & fallback
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Theme(
+              data: Theme.of(context).copyWith(canvasColor: Colors.black87),
+              child: DropdownButton<Locale>(
+                value: Get.locale ?? const Locale('en', 'US'),
+                underline: const SizedBox(),
+                icon: const Icon(Icons.language, color: Colors.white),
+                onChanged: (Locale? locale) {
+                  if (locale != null) Get.updateLocale(locale);
+                },
+                items: const [
+                  DropdownMenuItem(
+                    value: Locale('en', 'US'),
+                    child: Text('English', style: TextStyle(color: Colors.white)),
+                  ),
+                  DropdownMenuItem(
+                    value: Locale('hi', 'IN'),
+                    child: Text('हिंदी', style: TextStyle(color: Colors.white)),
+                  ),
+                ],
+              ),
             ),
           ),
           IconButton(

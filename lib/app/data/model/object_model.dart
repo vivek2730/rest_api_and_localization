@@ -12,11 +12,13 @@ class RestObject {
   });
 
   factory RestObject.fromJson(Map<String, dynamic> json) {
+    final rawData = json['data'];
+    final safeData = rawData is Map<String, dynamic> ? rawData : <String, dynamic>{};
     return RestObject(
-      id: json['id'],
-      name: json['name'],
-      data: json['data'] ?? {},
-      imageUrl: '', // You can assign default here; will be updated later
+      id: json['id'].toString(),
+      name: json['name'] ?? 'Unknown',
+      data: safeData,
+      imageUrl: '', // Will be updated later
     );
   }
 
