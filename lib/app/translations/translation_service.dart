@@ -1,4 +1,3 @@
-// lib/app/translations/translations.dart
 import 'package:get/get.dart';
 import 'en_us.dart';
 import 'hi_in.dart';
